@@ -72,7 +72,7 @@ ${DSTDIR}/MyFileUtils.o : MyFileUtils.cpp MyFileUtils.h
 ${DSTDIR}/hello : ${OBJS}
   @echo
   @echo "Linking $@ ..."
-  $ (CXX) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
+  $(CXX) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
 ${DSTDIR} :
   @echo
