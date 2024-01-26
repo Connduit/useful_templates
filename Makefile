@@ -57,7 +57,7 @@ ${DSTDIR}/%.o: %.cpp
   ${CXX} ${CXXFLAGS} ${CPPFLAGS} -c $< -o $@
 
 # Get list of all CPPs in current directory
-CPPS := $(wildcard *.cpp}
+CPPS := $(wildcard *.cpp)
 $(info CPPS: ${CPPS})
 # Compute the list of OBJS from the list of CPPS
 OBJS := ${patsubst %.cpp, ${DSTDIR}/%.o, ${CPPS}}
