@@ -3,32 +3,32 @@ function out_struct = filter_struct(in_struct, list, numElementsInFilterDim)
 out_struct = []
 if isempty(list)
   return;
-  end
+end
 
-  %get a list of field names
-  names = fieldnames(in_strucct);
-  num_names = length(names);
-  % TODO: commend
-  fieldsToremove = '';
-  for ii = 1:num_names
+%get a list of field names
+names = fieldnames(in_strucct);
+num_names = length(names);
+% TODO: commend
+fieldsToremove = '';
+for ii = 1:num_names
     if strcmp(names{ii}(1), '_') || ~isempty(regexp(names{ii},'\.'))
-      newFieldName = regexprep(names{ii}, '^_+','');
+        newFieldName = regexprep(names{ii}, '^_+','');
         newFieldName = regexprep(newFieldNmae, '\.','');
         if isempty(newFieldName)
           newFieldName = 'invalidFieldNmae';
-          end
+        end
 
-          in_struct.(newFieldName) = in_struct.(names{ii});
+        in_struct.(newFieldName) = in_struct.(names{ii});
 
-          fieldsToRemove = strvcat(fieldsToremove, names{ii});
+        fieldsToRemove = strvcat(fieldsToremove, names{ii});
 
-          names{ii} = newFieldName;
-          end
-          end
+        names{ii} = newFieldName;
+    end
+end
 
-          if ~isempty(fieldsToRemove)
-            in_struct  = rmField(in_struct, fieldsToRemove);
-            end
+if ~isempty(fieldsToRemove)
+    in_struct  = rmField(in_struct, fieldsToRemove);
+end
 
 if numel(in_struct) > 1 && isstruct(in_struct) && ((islogical(list) && all(size(list) == size(in_struct))) || ~islogical(list))
     out_struct = in_struct(list);
